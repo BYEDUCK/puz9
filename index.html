@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>PUZ 9 - switch or stay</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+    </head>
+    <body class="centered">
+        <div class="boxes centered">
+            <img id="b0" class="box" src="./images/box-closed.jpg" onclick="clickOne()">
+            <img id="b1" class="box" src="./images/box-closed.jpg" onclick="clickTwo()">
+            <img id="b2" class="box" src="./images/box-closed.jpg" onclick="clickThree()">
+        </div>
+        <div class="actions centered">
+            <button onclick="doClear()">CLEAR</button>
+            <button onclick="showEmpty()">NEXT</button>
+            <button onclick="reset()">RESET</button>
+        </div>
+        <div class="switchOrStay" id="switchOrStay">
+            <h1 class="centered">Switch or stay?</h1>
+            <div class="actions centered">
+                <button onclick="switchBox()">SWITCH</button>
+                <button onclick="endGame()">STAY</button>
+            </div>
+        </div>
+        <div class="stats centered">
+            <h2 id="wonTxt" class="centered"></h2>
+            <h2 id="lostTxt" class="centered"></h2>
+            <h2 id="wonPercentageTxt" class="centered"></h2>
+        </div>
+        <div class="centered sim_container">
+            <div class="centered">
+                <button onclick="enableSimulation()">SIMULATE</button>
+                <button disabled id="simLogBtn" onclick="showSimulationLog()">SHOW SIMULATION LOG (FIRST 1000)</button>
+                <button disabled id="clearLogBtn" onclick="clearSimulationLog()">CLEAR SIMULATION LOG</button>
+            </div>
+            <div id="sim" class="simulation centered">
+                <button id="simSwitchBtn" onclick="simulateSwitch()">START ALWAYS SWITCH SIMULATION</button>
+                <button id="simStayBtn" onclick="simulateStay()">START ALWAYS STAY SIMULATION</button>
+                <button disabled id="simStopBtn" onclick="stopSimulation()">STOP SIMULATION</button>
+                <div>
+                    <div style="display: inline;">
+                        <button onclick="simulateNTimesStay()">SIMULATE N TIMES ALWAYS STAY</button>
+                        <button onclick="simulateNTimesSwitch()">SIMULATE N TIMES ALWAYS SWITCH</button>
+                        <input class="n" id="simN" type="number">
+                    </div>
+                </div>
+                <ul id="simulation_entries">
+                </ul>
+            </div>
+        </div>
+        <script src="./js/script_utils.js"></script>
+        <script src="./js/script_main.js"></script>
+    </body>
+</html>
