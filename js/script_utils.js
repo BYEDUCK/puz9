@@ -100,7 +100,7 @@ function openBox(boxId) {
 }
 
 function updateStats(wonCallback, loseCallback) {
-    if (boxChosen != null) {
+    if (boxChosen !== null) {
         if (boxChosen === prize) {
             wonCount++;
             if (wonCallback) wonCallback();
@@ -113,7 +113,7 @@ function updateStats(wonCallback, loseCallback) {
     document.getElementById('wonTxt').innerHTML = 'Won: ' + wonCount;
     document.getElementById('lostTxt').innerHTML = 'Lost: ' + lostCount;
     var gamesCount = wonCount + lostCount;
-    document.getElementById('wonPercentageTxt').innerHTML = wonCount !== 0 ? 'Won %: ' + Math.round((wonCount / gamesCount) * 100) : 'Won %: --';
+    document.getElementById('wonPercentageTxt').innerHTML = wonCount !== 0 ? 'Won %: ' + ((wonCount / gamesCount) * 100).toFixed(1) : 'Won %: --';
 }
 
 function addSimulationEntry() {
@@ -139,7 +139,7 @@ function showSimulationLog() {
 }
 
 function getRandomBox() {
-    return Math.round(Math.random() * 2);
+    return getRandomInt(0, 2);
 }
 
 function disableSimulateButtons() {
@@ -167,4 +167,10 @@ function reset() {
     lostCount = 0;
     boxChosen = null;
     doClear();
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }

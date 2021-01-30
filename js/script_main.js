@@ -7,12 +7,8 @@ var previouslyChosen = null;
 
 var simulationIntervalId = null;
 
-function rollPrizeBox() {
-    return Math.round(Math.random() * 2); // [0;2]
-}
-
 function initBoxes() {
-    prize = rollPrizeBox();
+    prize = getRandomBox();
     emptyBoxes = [];
     for (let i = 0; i < 3; ++i) {
         if (i !== prize) {
@@ -28,9 +24,9 @@ function showEmpty() {
         alert('No box chosen!');
         return;
     }
-    var emptyToBeOpened = computeEmptyToBeOpened();
-    openBox(emptyBoxes[emptyToBeOpened]);
-    emptyOpened = emptyBoxes[emptyToBeOpened];
+    var emptyToBeOpenedIdx = computeEmptyToBeOpened();
+    openBox(emptyBoxes[emptyToBeOpenedIdx]);
+    emptyOpened = emptyBoxes[emptyToBeOpenedIdx];
     document.getElementById('switchOrStay').style.visibility = 'visible';
 }
 
@@ -41,13 +37,13 @@ function computeEmptyToBeOpened() {
             emptyChosen = i;
         }
     }
-    var emptyToBeOpened = null;
+    var idx = null;
     if (emptyChosen == null) {
-        emptyToBeOpened = Math.round(Math.random()); // [0;1] ; if prize box chosen - open one of 2 empty
+        idx = Math.round(Math.random()); // [0;1] ; if prize box chosen - open one of 2 empty
     } else {
-        emptyToBeOpened = emptyChosen === 0 ? 1 : 0; // if empty box chosen - open other empty
+        idx = emptyChosen === 0 ? 1 : 0; // if empty box chosen - open other empty
     }
-    return emptyToBeOpened;
+    return idx;
 }
 
 function switchBox() {
