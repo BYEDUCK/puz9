@@ -121,14 +121,16 @@ function addSimulationEntry() {
         `${boxChosen} : ${prize} (${boxChosen === prize ? "won" : "lost"})`
         : `${previouslyChosen} -> ${boxChosen} : ${prize} (${boxChosen === prize ? "won" : "lost"})`;
 
-    simulationEntries.push(entryTxt);
+    if (simulationEntries.length <= 1000) {
+        simulationEntries.push(entryTxt);
+    }
 }
 
 function showSimulationLog() {
     var entriesList = document.getElementById('simulation_entries');
     entriesList.innerHTML = '';
     entriesList.style.visibility = 'visible';
-    for (let i = 0; i < simulationEntries.length && i < 1000; ++i) {
+    for (let i = 0; i < simulationEntries.length; ++i) {
         var entryTxt = simulationEntries[i];
         var entry = document.createElement('li');
         entry.innerHTML = entryTxt;
